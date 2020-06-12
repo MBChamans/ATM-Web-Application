@@ -1,0 +1,81 @@
+//in atmwebapp database
+CREATE TABLE ICICI (
+cardno BIGINT(16) UNSIGNED PRIMARY KEY,
+pin INT(4) NOT NULL,
+accountno BIGINT(12) UNSIGNED NOT NULL,
+name VARCHAR(30) NOT NULL,
+balance INT(10) NOT NULL
+);
+CREATE TABLE HDFC(
+cardno BIGINT(16) UNSIGNED PRIMARY KEY,
+pin INT(4) NOT NULL,
+accountno BIGINT(12) UNSIGNED NOT NULL,
+name VARCHAR(30) NOT NULL,
+balance INT(10) NOT NULL
+);
+CREATE TABLE SBI(
+cardno BIGINT(16) UNSIGNED PRIMARY KEY,
+pin INT(4) NOT NULL,
+accountno BIGINT(12) UNSIGNED NOT NULL,
+name VARCHAR(30) NOT NULL,
+balance INT(10) NOT NULL
+)
+
+
+//in hdfc table
+INSERT INTO `hdfc`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+5610591081018250,1999,112233445566,'Sushant Kulkarni',10000);
+INSERT INTO `hdfc`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+6011000990139424,2018,111122223333,'Rishi Pandya',200000);
+INSERT INTO `hdfc`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+3530111333300000,3155,121223233434,'Aditi Hemane',4000000)
+
+//in icici table
+INSERT INTO `icici`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+3566002020360505,1312,998877665544,'Sheffin Shajit',15000);
+INSERT INTO `icici`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+5555555555554444,0909,101023234545,'Viraj Chogale',300000);
+INSERT INTO `icici`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+5105105105105100,3141,202098987676,'Ankit Katre',40000000)
+
+//in sbi table
+INSERT INTO `sbi`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+4012888888881881,1506,276534987622,'Akshay Mohite',150000);
+INSERT INTO `sbi`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+5019717010103742,1106,151516161717,'Aniket Shinde',250000);
+INSERT INTO `sbi`(`cardno`, `pin`, `accountno`, `name`, `balance`) VALUES (	
+6331101999990016,3107,989876765454,'Prathmesh Gawande',40000)
+
+
+//in atmwebapp database
+CREATE TABLE AKSHAY(
+transid INT(5) UNSIGNED AUTO-INCREMENT PRIMARY KEY,
+description TEXT(20) NOT NULL,
+credit INT(10),
+debit INT(10),
+balance INT(10) NOT NULL
+);
+CREATE TABLE SHEFIN(
+transid INT(5) UNSIGNED AUTO-INCREMENT PRIMARY KEY,
+description TEXT(20) NOT NULL,
+credit INT(10),
+debit INT(10),
+balance INT(10) NOT NULL
+);
+CREATE TABLE SUSHANT(
+transid INT(5) UNSIGNED AUTO-INCREMENT PRIMARY KEY,
+description TEXT(20) NOT NULL,
+credit INT(10),
+debit INT(10),
+balance INT(10) NOT NULL
+)
+
+//in atmwebapp database
+CREATE VIEW customers AS
+   SELECT * FROM sbi
+   UNION ALL
+   SELECT * FROM icici
+   UNION ALL
+   SELECT * FROM hdfc
+
+SELECT * FROM customers
