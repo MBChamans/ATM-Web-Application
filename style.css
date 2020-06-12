@@ -12,6 +12,24 @@ body{
 .navbar{
     background: black;
 }
+.dropdown{
+    position:relative;
+    display: inline-block;
+  }
+  .dropdown-content{
+    display:none;
+   position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    right:0;
+  
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 .right{
     float: right;
 }
@@ -55,7 +73,7 @@ body{
 .ms{
     align-self: center;
     padding:15px;
-    width=100%
+    width:100%;
 }
 .acno{
     align-self: left;
@@ -117,4 +135,68 @@ button:hover{
     color: white;
     text-align: center;
     font-size: 12px;
+}
+@media (max-width:1280px){
+    button{
+        margin-bottom: 10px;
+        display: block;
+        width: 100%;
+    }
+    #fast{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5px;
+        height:65px;
+    }
+
+    .two{
+        height: 600px;
+    }
+    .twotwo{
+        height: 650px;
+    }
+}
+@media (max-width:1024px){
+    .two{
+        width:50%;
+    }
+    .one, .three{
+        width:25%;
+    }
+    .twotwo{
+        width:50%;
+    }
+    .oneone, .threethree{
+        width:25%;
+    }
+
+}
+@media (max-width:767px){
+    .two{
+        width:65%;
+    }
+    .one, .three{
+        width:17%;
+    }
+    .twotwo{
+        width:65%;
+    }
+    .oneone, .threethree{
+        width:17%;
+    }
+}
+@media (max-width:480px){
+    .two{
+        width:85%;
+    }
+    .one, .three{
+        width:7%;
+    }
+    .twotwo{
+        width:85%;
+    }
+    .oneone, .threethree{
+        width:7%;
+    }
 }

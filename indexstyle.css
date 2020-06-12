@@ -13,8 +13,30 @@ body{
 .navbar{
     background: black;
 }
+.dropdown{
+  position:relative;
+  display: inline-block;
+}
+.dropdown-content{
+  display:none;
+ position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  right:0;
+
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.active{
+  border-left: 5px solid white;
+}
 .right{
     float: right;
+    
 }
 
 .right a{
@@ -44,14 +66,14 @@ body{
 }*/
 
 #main-content{
-    border:solid black 2px;
+    border:solid black 4px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #buttons{
     background-color: black;
-    color:#ffad33;
+    color:white;
     padding: 20px;
     margin:20px;
     width: 90%;
@@ -148,3 +170,4 @@ body{
   .col-md-12 {
     width: 100%;
   }
+}
