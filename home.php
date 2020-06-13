@@ -1,4 +1,8 @@
-<html>
+<?php  
+
+session_start();
+
+?><html>
     <head>
         <title>Bank Of Mokujit</title>
         <link rel="icon" href="icon.png">
