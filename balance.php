@@ -69,8 +69,8 @@ else
                 <br><br><br>
                 <form action="" method="">
                     <div class="container">
-                        <div><h4><span class="acno">ACCOUNT NUMBER: </span></h4><span>xxxx-xxxx-xxxx</span><br><br>
-                            <h4><span class="bal">BALANCE: </span></h4><span>Rs.xxxx</span></div>
+                        <div><h4><span class="acno">ACCOUNT NUMBER: </span></h4><span><h4 style="color: #228B22"><?php echo $_SESSION['u_accountno']; ?></h4></span><br><br>
+                            <h4><span class="bal">BALANCE: </span></h4><span><h4 style="color: #228B22">Rs.<?php echo $_SESSION['fbalance']; ?></h4></span></div>
                       
                    
                         

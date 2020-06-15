@@ -70,7 +70,7 @@ else
             <br>
             <section class="row">
                 <div id="bclass" class="col-lg-6 col-md-6">
-                    <a href="balance.html"><button id="buttons" class="btn">BALANCE QUERY</button></a>
+                    <a href="be.php"><button id="buttons" class="btn">BALANCE ENQUERY</button></a>
                 </div>
                 
                 <div id="bclass" class="col-lg-6 col-md-6">
