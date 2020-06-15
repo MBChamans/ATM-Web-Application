@@ -30,9 +30,22 @@
             else{
                 $row = mysqli_fetch_assoc($result);
                 $bank = "SELECT bank from customers where accountno='$accno'";
+                $b=mysqli_query($conn,$bank);
+                $ban=mysqli_fetch_array($b,MYSQLI_ASSOC);
+                $ba=$ban['bank'];
+                //$row1 = mysqli_fetch_assoc($b);
+                //echo "<script>console.log('Debug Objects: " . $b . "' );</script>";
+                //echo '<script>alert('.$bank.')</script>'; 
+                //echo "<p>{$b}</p>";
+                //console.log('Done');
+
                 if($currentpin==$verify){
                     if($newpin==$confirmpin){
-                        $UPDATE = "UPDATE $bank SET pin='$confirmpin' WHERE accountno='$accno'";
+
+                        $UPDATE = "UPDATE $ba SET pin='$confirmpin' WHERE accountno='$accno'";
+
+                        //$query="UPDATE '".$bank."' SET pin='$confirmpin' WHERE accountno='$accno'";
+                        //$conn ->query("$query");
                     
                         mysqli_query($conn,$UPDATE);
                         echo '<script type="text/javascript"> alert("PIN Changed Successfully!")
