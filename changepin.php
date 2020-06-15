@@ -49,12 +49,12 @@ else
     <body>
         <div class="first">
             <nav class="navbar navbar-light">
-                <a class="navbar-brand" href="index.html" style="color: white; font-size: 30px;">
+                <a class="navbar-brand" href="index.php" style="color: white; font-size: 30px;">
                     <img src="icon.png" width="60" height="60" alt="" loading="lazy" style="margin-left: 10px; margin-right: 20px;">
                     BANK OF MOKUJIT
                 </a>
                 <div class="right">
-                    <a class="nav-link" href="index.html">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="home.html">LOGOUT</a>
+                    <a class="nav-link" href="index.php">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="home.html">LOGOUT</a>
                     <div class="dropdown"><i class='fas fa-user-circle' style='font-size:48px;color:white'></i><div class="dropdown-content">NAME :<br><span><?php echo $_SESSION['u_name']; ?></span><br>ACCNO :<br><span><?php echo $_SESSION['u_accountno']; ?></span></div>
 
                 </div>

@@ -53,12 +53,12 @@ else
     <body>
         <div class="first">
             <nav class="navbar navbar-light">
-                <a class="navbar-brand" href="#" style="color: white; font-size: 30px;">
+                <a class="navbar-brand" href="index.php" style="color: white; font-size: 30px;">
                     <img src="icon.png" width="60" height="60" alt="" loading="lazy" style="margin-left: 10px; margin-right: 20px;">
                     BANK OF MOKUJIT
                 </a>
                 <div class="right ">
-                    <a class="nav-link active" href="#">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="logout.php">LOGOUT</a>
+                    <a class="nav-link active" href="index.php">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="logout.php">LOGOUT</a>
                     <div class="dropdown"><i class='fas fa-user-circle' style='font-size:48px;color:white'></i><div class="dropdown-content">NAME :<br><span><?php echo $_SESSION['u_name']; ?></span><br>ACCNO :<br><span><?php echo $_SESSION['u_accountno']; ?></span></div>
                 </div>
             </nav>
@@ -74,23 +74,23 @@ else
                 </div>
                 
                 <div id="bclass" class="col-lg-6 col-md-6">
-                    <a href="withdraw.html"><button id="buttons" class="btn">WITHDRAW</button></a>
+                    <a href="withdraw.php"><button id="buttons" class="btn">WITHDRAW</button></a>
                 </div>
                 
                 <div id="bclass" class="col-lg-6 col-md-6">
-                    <a href="ministatement.html"><button id="buttons"class="btn">MINI STATEMENT</button></a>
+                    <a href="ministatement.php"><button id="buttons"class="btn">MINI STATEMENT</button></a>
                 </div>
                 
                 <div id="bclass" class="col-lg-6 col-md-6">
-                    <a href="fastcash.html"><button id="buttons" class="btn">FAST CASH</button></a>
+                    <a href="fastcash.php"><button id="buttons" class="btn">FAST CASH</button></a>
                 </div>
                 
                 <div id="bclass" class="col-lg-6 col-md-6">
-                    <a href="changepin.html"><button id="buttons" class="btn">CHANGE PIN</button></a>
+                    <a href="changepin.php"><button id="buttons" class="btn">CHANGE PIN</button></a>
                 </div>
 
                 <div id="bclass" class="col-lg-6 col-md-6">
-                    <a href="cashtransfer.html"><button id="buttons"class="btn">CASH TRANSFER</button></a>
+                    <a href="cashtransfer.php"><button id="buttons"class="btn">CASH TRANSFER</button></a>
                 </div>
                 
                 
