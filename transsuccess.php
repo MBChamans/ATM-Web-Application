@@ -69,7 +69,7 @@ else
             <div class="column twotwo"><br><br><br><br><br><br><br>
                 <h1 style="color:green">TRANSACTION SUCCESSFUL!</h1>
                 <br>
-                <a href="#" style="color: black;">CLICK HERE TO GO BACK TO THE MENU</a>
+                <a href="index.php" style="color: black;">CLICK HERE TO GO BACK TO THE MENU</a>
                 <br><br>
                 
             </div>

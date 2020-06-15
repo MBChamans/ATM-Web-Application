@@ -69,7 +69,7 @@ else
             <div class="column twotwo"><br><br><br><br><br><br><br>
                 <h1 style="color:red">TRANSACTION FAILED!</h1>
                 <br>
-                <a href="#" style="color: black;">CLICK HERE TO TRY AGAIN</a>
+                <a href="index.php" style="color: black;">CLICK HERE TO TRY AGAIN</a>
                 <br><br>
                 
             </div>

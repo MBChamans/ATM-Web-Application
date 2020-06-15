@@ -29,10 +29,11 @@
             }
             else{
                 $row = mysqli_fetch_assoc($result);
+                $bank = "SELECT bank from customers where accountno='$accno'";
                 if($currentpin==$verify){
                     if($newpin==$confirmpin){
-                        $UPDATE = "UPDATE customers SET pin='$confirmpin'";
-                 
+                        $UPDATE = "UPDATE $bank SET pin='$confirmpin' WHERE accountno='$accno'";
+                    
                         mysqli_query($conn,$UPDATE);
                         echo '<script type="text/javascript"> alert("PIN Changed Successfully!")
                             
