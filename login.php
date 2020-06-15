@@ -68,8 +68,9 @@ if (!empty($accno) || !empty($pin)){
             		$_SESSION['u_cardno']=$row['cardno'];
             		$_SESSION['u_pin']=$row['pin'];
             		$_SESSION['u_accountno']=$row['accountno'];
-            		$_SESSION['u_name']=$row['name'];
+            		$_SESSION['u_fname']=$row['fn'];
             		$_SESSION['u_balance']=$row['balance'];
+                $_SESSION['u_lname']=$row['ln'];
 
                 $_SESSION['start'] = time();
 

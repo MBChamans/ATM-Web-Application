@@ -67,7 +67,7 @@ else
             <div class="column two"><br>
                 <h1>PLEASE ENTER THE AMOUNT IN MULTIPLES OF 100</h1>
                 <br>
-                <form action="" method="">
+                <form action="wd.php" method="POST">
                     <div class="container">
                         <label for="accno">ENTER THE AMOUNT</label><br>
                         <input type="text" placeholder="ENTER AMOUNT" name="amount" required>
