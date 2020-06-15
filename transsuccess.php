@@ -1,3 +1,38 @@
+<?php 
+
+session_start();
+ 
+if(!isset($_SESSION['u_accountno']))
+ 
+{
+ 
+    echo "<p align='center'>Please Login again ";
+ 
+    echo "<a href='home.php'>Click Here to Login</a></p>";
+ 
+}
+ 
+else
+
+{
+
+ 
+   /* $now = time();
+ // checking the time now when page starts
+ 
+    if($now > $_SESSION['expire'])
+ 
+    {
+ 
+        session_destroy();
+        window.header("Location:home.html?s=expired");
+        echo '<script type="text/javascript"> alert("Your session has expired.Please login agian to continue")'; 
+    }
+
+    else{
+        //starts here
+*/
+ ?>
 <html>
     <head>
         <title>Bank Of Mokujit | About Us</title>
@@ -32,9 +67,9 @@
         <div class="row">
             <div class="column oneone"></div>
             <div class="column twotwo"><br><br><br><br><br><br><br>
-                <h1 style="color:red">TRANSACTION FAILED!</h1>
+                <h1 style="color:green">TRANSACTION SUCCESSFUL!</h1>
                 <br>
-                <a href="#" style="color: black;">CLICK HERE TO TRY AGAIN</a>
+                <a href="#" style="color: black;">CLICK HERE TO GO BACK TO THE MENU</a>
                 <br><br>
                 
             </div>
@@ -57,5 +92,12 @@
             <br><br>
 
         </div>
+        <?php
+ 
+ //}
+ 
+}
+ 
+?>
     </body>
 </html>

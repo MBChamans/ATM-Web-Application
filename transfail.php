@@ -35,7 +35,7 @@ else
  ?>
  <html>
     <head>
-        <title>Bank Of Mokujit | Change Pin</title>
+        <title>Bank Of Mokujit | About Us</title>
         <link rel="icon" href="icon.png">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -49,49 +49,36 @@ else
     <body>
         <div class="first">
             <nav class="navbar navbar-light">
-                <a class="navbar-brand" href="index.php" style="color: white; font-size: 30px;">
+                <a class="navbar-brand" href="home.html" style="color: white; font-size: 30px;">
                     <img src="icon.png" width="60" height="60" alt="" loading="lazy" style="margin-left: 10px; margin-right: 20px;">
                     BANK OF MOKUJIT
                 </a>
                 <div class="right">
-                    <a class="nav-link" href="index.php">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="home.html">LOGOUT</a>
-                    <div class="dropdown"><i class='fas fa-user-circle' style='font-size:48px;color:white'></i><div class="dropdown-content">NAME :<br><span><?php echo $_SESSION['u_name']; ?></span><br>ACCNO :<br><span><?php echo $_SESSION['u_accountno']; ?></span></div>
-
+                    <a class="nav-link" href="index.html">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="home.html">LOGOUT</a>
+                    <div class="dropdown"><i class='fas fa-user-circle' style='font-size:48px;color:white'></i><div class="dropdown-content">NAME<br>ACCNO</div></div>
+                    
                 </div>
             </nav>
         </div>
+
         <br>
         <br>
         <br>
         <div class="row">
-            <div class="column one"></div>
-            <div class="column two"><br>
-                <h1>CHANGE PIN</h1>
+            <div class="column oneone"></div>
+            <div class="column twotwo"><br><br><br><br><br><br><br>
+                <h1 style="color:red">TRANSACTION FAILED!</h1>
                 <br>
-                <form action="cp.php" method="POST">
-                    <div class="container">
-                        <label for="accno">ENTER CURRENT PIN</label><br>
-                        <input type="text" placeholder="ENTER PIN" name="CURRENT" required>
-                        <label for="accno">ENTER NEW PIN</label><br>
-                        <input type="text" placeholder="ENTER NEW PIN" name="NEW" required>
-                        <label for="accno">CONFIRM NEW PIN</label><br>
-                        <input type="text" placeholder="ENTER NEW PIN" name="CONFIRM" required>
-                      <br><br>
-                        
-                        <div class="buttons">
-                            <button type="submit">PROCEED</button>
-                            <button type="button"><a href="index.html">CANCEL</a></button>
-                           
-                        </div>
-                        
-                    </div>
-                </form>
+                <a href="#" style="color: black;">CLICK HERE TO TRY AGAIN</a>
+                <br><br>
+                
             </div>
-            <div class="column three"></div>
+            <div class="column threethree"></div>
         </div>
         <br>
         <br>
         <br>
+        
         <div class="footer">
             <br>
             <a style="font-size: 20px;"><img src="icon.png" width="20" height="20" alt="" loading="lazy">BANK OF MOKUJIT</a>
@@ -102,11 +89,10 @@ else
                 <p>CONTACT x MAIL US</p>
                 <a href=mailto:sheffinshajit@gmail.com style="color:  #ffad33;">sheffinshajit@gmail.com</a></p>
        
-            <br>
-            <br>
+            <br><br>
 
         </div>
-<?php
+        <?php
  
  //}
  
