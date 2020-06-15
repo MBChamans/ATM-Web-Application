@@ -114,3 +114,11 @@ debit INT(10),
 balance INT(10) NOT NULL,
 ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+//in atmwebapp database 
+ALTER TABLE ICICI
+ADD bank text(10);
+ALTER TABLE HDFC
+ADD bank text(10);
+ALTER TABLE SBI
+ADD bank text(10);
