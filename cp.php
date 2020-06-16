@@ -29,7 +29,7 @@
             }
             else{
                 $row = mysqli_fetch_assoc($result);
-                $bank = "SELECT bank from customers where accountno='$accno'";
+                $bank = "SELECT bank from customers where cardno='$cardno'";
                 $b=mysqli_query($conn,$bank);
                 $ban=mysqli_fetch_array($b,MYSQLI_ASSOC);
                 $ba=$ban['bank'];
@@ -42,7 +42,7 @@
                 if($currentpin==$verify){
                     if($newpin==$confirmpin){
 
-                        $UPDATE = "UPDATE $ba SET pin='$confirmpin' WHERE accountno='$accno'";
+                        $UPDATE = "UPDATE $ba SET pin='$confirmpin' WHERE cardno='$cardno'";
 
                         //$query="UPDATE '".$bank."' SET pin='$confirmpin' WHERE accountno='$accno'";
                         //$conn ->query("$query");
