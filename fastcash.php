@@ -73,11 +73,11 @@ else
                 <form method="POST" action="fc.php">
                 <button type="submit" id="fast" name="one" >500</button>
                 <br><br>
-                <button type="button" id="fast" name="two" >1000</button>
+                <button type="submit" id="fast" name="two" >1000</button>
                 <br><br>
-                <button type="button" id="fast" name="three" >1500</button>
+                <button type="submit" id="fast" name="three" >1500</button>
                 <br><br>
-                <button type="button" id="fast" name="four" >2000</button>
+                <button type="submit" id="fast" name="four" >2000</button>
     </form>
             </div>
             <div class="column threethree"></div>
