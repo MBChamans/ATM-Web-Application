@@ -45,6 +45,7 @@ else
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="style.css">
+        
     </head>
     <body>
         <div class="first">
@@ -69,13 +70,15 @@ else
                 <h1>FAST CASH WITHDRAWAL</h1>
                 <p>CHOOSE ONE OPTION</p>
                 <br>
-                <button type="button" id="fast">500</button>
+                <form method="POST" action="fc.php">
+                <button type="submit" id="fast" name="one" >500</button>
                 <br><br>
-                <button type="button" id="fast">1000</button>
+                <button type="button" id="fast" name="two" >1000</button>
                 <br><br>
-                <button type="button" id="fast">1500</button>
+                <button type="button" id="fast" name="three" >1500</button>
                 <br><br>
-                <button type="button" id="fast">2000</button>
+                <button type="button" id="fast" name="four" >2000</button>
+    </form>
             </div>
             <div class="column threethree"></div>
         </div>
