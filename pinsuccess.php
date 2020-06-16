@@ -54,7 +54,7 @@ else
                     BANK OF MOKUJIT
                 </a>
                 <div class="right">
-                    <a class="nav-link" href="index.html">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="home.html">LOGOUT</a>
+                    <a class="nav-link" href="index.php">MENU</a><a class="nav-link" href="about.html">ABOUT</a><a class="nav-link" href="home.html">LOGOUT</a>
                     <div class="dropdown"><i class='fas fa-user-circle' style='font-size:48px;color:white'></i><div class="dropdown-content">NAME<br>ACCNO</div></div>
                     
                 </div>

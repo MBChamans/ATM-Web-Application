@@ -42,27 +42,11 @@ else
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="style.css">
-        <script>
-            function insert(){
-                //var username = '<%= Session["row"] %>';
-                for (i=5; i>=1; i--){
-                    var xmlhttp=new XMLHttpRequest();
-                    xmlhttp.open("GET","mini.php", false);
-                    xmlhttp.send(null);
-                    var arr=xmlhttp.responseText;
-                    document.getElementbyId(i).innerHTML=arr;
-                    //console.log(xmlhttp.responseText);
-                    //console.log(username);
-                }
-            }
-        </script>
     </head>
-    <body onload="insert()">
+    <body>
        <div class="first">
             <nav class="navbar navbar-light">
                 <a class="navbar-brand" href="index.php" style="color: white; font-size: 30px;">
@@ -78,8 +62,8 @@ else
         <br>
         <div class="ms">
                 <br>
-                <div><span class="acno">ACCOUNT NUMBER: </span><span>xxxx-xxxx-xxxx</span>
-                <span class="bal">BALANCE: </span><span>Rs.xxxx</span></div>
+                <div><span class="acno">ACCOUNT NUMBER: </span><span style="color: #228B22;"><?php echo $_SESSION['u_accountno']; ?></span>
+                <span class="bal">BALANCE: </span><span style="color: #228B22">Rs.<?php echo $_SESSION['u_balance']; ?></span></div></div>
                 <br>
                 <p class="mshead">MINI STATEMENT</p>
                 <br>
@@ -88,58 +72,94 @@ else
                     <table class="table">
                     <thead>
                         <tr>
-                            <th>Transaction ID</th>
-                            <th>Description</th>
-                            <th>Type</th>
-                            <th>Amount</th>
-                            <th>Balance</th>
+                            <th><b>TRANSACTION ID</b></th>
+                            <th><b>DESCRIPTION</b></th>
+                            <th><b>TYPE</b></th>
+                            <th><b>AMOUNT</b></th>
+                            <th><b>BALANCE</b></th>
                         </tr>
-    </thead>
-    <tbody>
-      <tr id="1">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr id="2">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr><tr id="3">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr><tr id="4">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr><tr id="5">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-                    </table>
+                    </thead>
+                    
+                    <?php
+                    
+                    $accno = $_SESSION['u_accountno'];
+                    $host = "localhost";
+                     $dbUsername = "root";
+                    $dbPassword = "";
+                    $dbname = "atmwebapp";
+                    $conn = mysqli_connect($host, $dbUsername, $dbPassword, $dbname);
+                    if(mysqli_connect_error()){
+            die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
+        }
+        else{
+            $SELECT = "SELECT * From customers Where accountno='$accno'";
+            $result =mysqli_query($conn,$SELECT);
+            $resultCheck= mysqli_num_rows($result);
+            if($resultCheck<1) {
+                                echo '<script type="text/javascript"> alert("Unexpected Error")
+                                window.history.go(-1);
+                                </script>';
+                                exit();
+            }
+            else{
+                $row = mysqli_fetch_assoc($result);
+                $bal ="SELECT balance from customers where accountno='$accno'";
+                $bal1=mysqli_query($conn,$bal);
+                $bal2=mysqli_fetch_array($bal1,MYSQLI_ASSOC);
+                $_SESSION['fbalance']=$bal2['balance'];
+
+                $bank = "SELECT bank from customers where accountno='$accno'";
+                $b=mysqli_query($conn,$bank);
+                $ban=mysqli_fetch_array($b,MYSQLI_ASSOC);
+                $ba=$ban['bank'];
+
+
+                $first="SELECT fn from $ba where accountno='$accno'";
+                $first1=mysqli_query($conn,$first);
+                $first2=mysqli_fetch_array($first1,MYSQLI_ASSOC);
+                $first3=$first2['fn'];
+
+                $data="SELECT transid, description ,type ,amount ,balance FROM $first3 ORDER BY transid DESC LIMIT 5";
+                    $result1 = mysqli_query($conn,$data);
+                    $result2=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+                    $num_rows=mysqli_num_rows($result1);
+
+                    $line="SELECT MAX(transid) AS 'transidmax' FROM $first3";
+                    $line1=mysqli_query($conn,$line);
+                    $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
+                    $maxtrans=$line2['transidmax'];
+
+                    $data1="SELECT transid, description ,type ,amount ,balance FROM $first3 WHERE transid=$maxtrans";
+                    $toprow = mysqli_query($conn,$data1);
+                    $row1 = mysqli_fetch_assoc($toprow);
+                    echo "<tr><td>" . $row1["transid"]. "</td><td>" . $row1["description"] . "</td><td>". $row1["type"]. "</td><td>". $row1["amount"]. "</td><td>". $row1["balance"]. "</td></tr>";
+
+                    if ($num_rows >=0) {
+                        $ctr=1;
+                        do {
+                            
+                            $row = mysqli_fetch_assoc($result1);
+                        echo "<tr><td>" . $row["transid"]. "</td><td>" . $row["description"] . "</td><td>". $row["type"]. "</td><td>". $row["amount"]. "</td><td>". $row["balance"]. "</td></tr>";
+                        $ctr=$ctr+1;
+                            
+                            }while($ctr<=5);
+                            echo "</table>";
+                    } else { echo "0 results"; }
+        }
+        $conn->close();
+
+}
+
+
+?>
+         </table>           
     </div>
                 
             
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <p>
+ 		<br>
+ 		<br>
         <br>
         <br>
         <div class="footer">
