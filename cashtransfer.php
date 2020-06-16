@@ -67,7 +67,7 @@ else
             <div class="column two"><br>
                 <h1>CASH TRANSFER</h1>
                 <br>
-                <form action="" method="">
+                <form action="ct.php" method="POST">
                     <div class="container">
                         <label for="accno">BENEFICIARY'S ACCOUNT NUMBER</label><br>
                         <input type="text" placeholder="ENTER ACCOUNT NUMBER" name="accno" required>
