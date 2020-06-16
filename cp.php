@@ -1,6 +1,6 @@
 <?php
  session_start();
-    $accno = $_SESSION['u_accountno'];
+    $cardno = $_SESSION['u_cardno'];
     $newpin = $_POST['NEW'];
     $currentpin = $_POST['CURRENT'];
     $confirmpin = $_POST['CONFIRM'];
@@ -18,7 +18,7 @@
 			die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 		}
 		else{
-			$SELECT = "SELECT * From customers Where accountno='$accno'";
+			$SELECT = "SELECT * From customers Where cardno='$cardno'";
             $result =mysqli_query($conn,$SELECT);
             $resultCheck= mysqli_num_rows($result);
             if($resultCheck<1) {

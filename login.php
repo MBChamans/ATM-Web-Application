@@ -2,10 +2,10 @@
 
 session_start();
 
-$accno = $_POST['accno'];
+$cardno = $_POST['cardno'];
 $pin = $_POST['pin'];
 
-if (!empty($accno) || !empty($pin)){
+if (!empty($cardno) || !empty($pin)){
     $host = "localhost";
     $dbUsername = "root";
     $dbPassword = "";
@@ -17,7 +17,7 @@ if (!empty($accno) || !empty($pin)){
 			die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 		}
 		else{
-			     $SELECT = "SELECT * From customers Where accountno='$accno'";
+			     $SELECT = "SELECT * From customers Where cardno='$cardno'";
                  $result = mysqli_query($conn,$SELECT);
                  $resultCheck= mysqli_num_rows($result);
 				 if($resultCheck <1) {

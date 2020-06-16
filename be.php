@@ -1,6 +1,6 @@
 <?php
  session_start();
-    	$accno = $_SESSION['u_accountno'];
+    	$cardno = $_SESSION['u_cardno'];
     	$host = "localhost";
         $dbUsername = "root";
         $dbPassword = "";
@@ -12,7 +12,7 @@
 			die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 		}
 		else{
-			$SELECT = "SELECT * From customers Where accountno='$accno'";
+			$SELECT = "SELECT * From customers Where cardno='$cardno'";
 			$result =mysqli_query($conn,$SELECT);
             $resultCheck= mysqli_num_rows($result);
             if($resultCheck<1) {
@@ -23,7 +23,7 @@
             }
             else{
                 $row = mysqli_fetch_assoc($result);
-                $bal ="SELECT balance from customers where accountno='$accno'";
+                $bal ="SELECT balance from customers where cardno='$cardno'";
                 $bal1=mysqli_query($conn,$bal);
                 $bal2=mysqli_fetch_array($bal1,MYSQLI_ASSOC);
                 $_SESSION['fbalance']=$bal2['balance'];
