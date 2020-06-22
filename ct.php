@@ -76,9 +76,16 @@
                			mysqli_query($conn,$UPDATE1);
                         $UPDATE2="UPDATE $bankbenf3 SET balance=($balbenf3+$amount) WHERE accountno='$baccno'";
                         mysqli_query($conn,$UPDATE2);
-                        $INSERT1="INSERT INTO $firstcust3 (`description`, `balance`, `type`, `amount`) VALUES ('Transfer to $firstbenf3',($balcust3-$amount),'debit',$amount)";
+                        
+                        $INSERTtran="INSERT INTO transactions(`sender`, `receiver`, `amount`,`type`) VALUES ('$firstcust3','$firstbenf3',$amount,'Transfer from $firstcust3 to $firstbenf3')";
+                        mysqli_query($conn,$INSERTtran);
+                        $line="SELECT MAX(transid) AS 'transidmax' FROM transactions";
+                        $line1=mysqli_query($conn,$line);
+                        $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
+                        $maxtrans=$line2['transidmax'];
+                        $INSERT1="INSERT INTO $firstcust3 (`description`, `balance`, `type`, `amount`,`transid`) VALUES ('Transfer to $firstbenf3',($balcust3-$amount),'debit',$amount,$maxtrans)";
                         mysqli_query($conn,$INSERT1);
-                        $INSERT2="INSERT INTO $firstbenf3 (`description`, `balance`, `type`, `amount`) VALUES ('Transfer from $firstcust3',($balbenf3+$amount),'credit',$amount)";
+                        $INSERT2="INSERT INTO $firstbenf3 (`description`, `balance`, `type`, `amount`,`transid`) VALUES ('Transfer from $firstcust3',($balbenf3+$amount),'credit',$amount,$maxtrans)";
                         mysqli_query($conn,$INSERT2);
                         echo '<script type="text/javascript"> alert("Transfer Transaction Successfully!")
                             </script>';
