@@ -69,11 +69,52 @@ else
                 </div>
             </nav>
         </div>
+        <?php
+
+                $accno = $_SESSION['u_accountno'];
+                    $host = "localhost";
+                     $dbUsername = "root";
+                    $dbPassword = "";
+                    $dbname = "atmwebapp";
+                    $conn = mysqli_connect($host, $dbUsername, $dbPassword, $dbname);
+        
+               
+                $bank = "SELECT bank from customers where accountno='$accno'";
+                $b=mysqli_query($conn,$bank);
+                $ban=mysqli_fetch_array($b,MYSQLI_ASSOC);
+                $ba=$ban['bank'];
+
+
+                $first="SELECT fn from $ba where accountno='$accno'";
+                $first1=mysqli_query($conn,$first);
+                $first2=mysqli_fetch_array($first1,MYSQLI_ASSOC);
+                $first3=$first2['fn'];
+
+         $data="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 ORDER BY srno DESC LIMIT 5";
+                    $result1 = mysqli_query($conn,$data);
+                    $result2=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+                    $num_rows=mysqli_num_rows($result1);
+        if ($num_rows >0) {
+        $line="SELECT MAX(srno) AS 'srnomax' FROM $first3";
+                    $line1=mysqli_query($conn,$line);
+                    $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
+                    $maxsrno=$line2['srnomax'];
+        $bal="SELECT balance from $first3 where srno=$maxsrno";
+        $bal1=mysqli_query($conn,$bal);
+        $bal2=mysqli_fetch_array($bal1,MYSQLI_ASSOC);
+        $bal3=$bal2['balance'];
+    }
+    else{
+        $bal3=$_SESSION['u_balance'];
+    }
+
+
+        ?>
         <br>
         <div class="ms">
                 <br>
                 <div><span class="acno">ACCOUNT NUMBER: </span><span style="color: #228B22;"><?php echo $_SESSION['u_accountno']; ?></span>
-                <span class="bal">BALANCE: </span><span style="color: #228B22">Rs.<?php echo $_SESSION['u_balance']; ?></span></div></div>
+                <span class="bal">BALANCE: </span><span style="color: #228B22">Rs.<?php echo $bal3; ?></span></div></div>
                 <br>
                 <p class="mshead">MINI STATEMENT</p>
                 <br>
@@ -140,12 +181,14 @@ else
                     $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
                     $maxsrno=$line2['srnomax'];
 
-                    $data1="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 WHERE srno=$maxsrno";
+                    
+
+                    if ($num_rows >0) {
+                        $data1="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 WHERE srno=$maxsrno";
                     $toprow = mysqli_query($conn,$data1);
                     $row1 = mysqli_fetch_assoc($toprow);
                     echo "<tr><td>" . $row1["srno"]. "</td><td>" . $row1["description"] . "</td><td>". $row1["type"]. "</td><td>". $row1["amount"]. "</td><td>". $row1["balance"]. "</td><td>". $row1["transid"]. "</td></tr>";
 
-                    if ($num_rows >=0) {
                         $ctr=1;
                         do {
                             
@@ -155,7 +198,7 @@ else
                             
                             }while($ctr<=5);
                             echo "</table>";
-                    } else { echo "0 results"; }
+                    } else { echo "<br><br><p class='container'>NO ENTRIES AVAILABLE<p>"; }
         }
         $conn->close();
 
