@@ -82,11 +82,12 @@ else
                     <table class="table">
                     <thead>
                         <tr>
-                            <th><b>TRANSACTION ID</b></th>
+                            <th><b>SR NO.</b></th>
                             <th><b>DESCRIPTION</b></th>
                             <th><b>TYPE</b></th>
                             <th><b>AMOUNT</b></th>
                             <th><b>BALANCE</b></th>
+                            <th><b>TRANS ID</b></th>
                         </tr>
                     </thead>
                     
@@ -129,27 +130,27 @@ else
                 $first2=mysqli_fetch_array($first1,MYSQLI_ASSOC);
                 $first3=$first2['fn'];
 
-                $data="SELECT transid, description ,type ,amount ,balance FROM $first3 ORDER BY transid DESC LIMIT 5";
+                $data="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 ORDER BY srno DESC LIMIT 5";
                     $result1 = mysqli_query($conn,$data);
                     $result2=mysqli_fetch_array($result1,MYSQLI_ASSOC);
                     $num_rows=mysqli_num_rows($result1);
 
-                    $line="SELECT MAX(transid) AS 'transidmax' FROM $first3";
+                    $line="SELECT MAX(srno) AS 'srnomax' FROM $first3";
                     $line1=mysqli_query($conn,$line);
                     $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
-                    $maxtrans=$line2['transidmax'];
+                    $maxsrno=$line2['srnomax'];
 
-                    $data1="SELECT transid, description ,type ,amount ,balance FROM $first3 WHERE transid=$maxtrans";
+                    $data1="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 WHERE srno=$maxsrno";
                     $toprow = mysqli_query($conn,$data1);
                     $row1 = mysqli_fetch_assoc($toprow);
-                    echo "<tr><td>" . $row1["transid"]. "</td><td>" . $row1["description"] . "</td><td>". $row1["type"]. "</td><td>". $row1["amount"]. "</td><td>". $row1["balance"]. "</td></tr>";
+                    echo "<tr><td>" . $row1["srno"]. "</td><td>" . $row1["description"] . "</td><td>". $row1["type"]. "</td><td>". $row1["amount"]. "</td><td>". $row1["balance"]. "</td><td>". $row1["transid"]. "</td></tr>";
 
                     if ($num_rows >=0) {
                         $ctr=1;
                         do {
                             
                             $row = mysqli_fetch_assoc($result1);
-                        echo "<tr><td>" . $row["transid"]. "</td><td>" . $row["description"] . "</td><td>". $row["type"]. "</td><td>". $row["amount"]. "</td><td>". $row["balance"]. "</td></tr>";
+                        echo "<tr><td>" . $row["srno"]. "</td><td>" . $row["description"] . "</td><td>". $row["type"]. "</td><td>". $row["amount"]. "</td><td>". $row["balance"]. "</td><td>". $row["transid"]. "</td></tr>";
                         $ctr=$ctr+1;
                             
                             }while($ctr<=5);
