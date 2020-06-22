@@ -17,21 +17,6 @@ else
 {
 
  
-   /* $now = time();
- // checking the time now when page starts
- 
-    if($now > $_SESSION['expire'])
- 
-    {
- 
-        session_destroy();
-        window.header("Location:home.html?s=expired");
-        echo '<script type="text/javascript"> alert("Your session has expired.Please login agian to continue")'; 
-    }
-
-    else{
-        //starts here
-*/
  ?>
  <html>
     <head>
@@ -45,6 +30,31 @@ else
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript">
+            setTimeout(function() {
+            location.reload();
+            "<?php 
+             $now = time();
+             // checking the time now when home page starts
+             if($now > $_SESSION['expire'])
+ 
+            {
+ 
+            session_destroy();
+ 
+            header("Location:index.php?session=expired");
+ 
+             }//
+ 
+            else
+ 
+            {
+            //starting this else one [else1]
+            ?>"
+    
+  
+            }, 60000);
+  </script>
     </head>
     <body>
        <div class="first">
@@ -161,6 +171,8 @@ else
  		<br>
  		<br>
         <br>
+        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 2 MINUTES</p>
+        <br>
         <br>
         <div class="footer">
             <br>
@@ -177,7 +189,7 @@ else
         </div>
 <?php
  
- //}
+ }
  
 }
  
