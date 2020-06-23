@@ -87,8 +87,8 @@ else
             <div class="column threethree"></div>
         </div>
         <br>
-        <br>
-        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 2 MINUTES</p>
+       <br>
+        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 1 MINUTE</p>
         <br>
         <br>
         

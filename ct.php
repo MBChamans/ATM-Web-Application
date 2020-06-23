@@ -71,6 +71,7 @@
                 //$from='Cash Transfer from ';
                 //$a=$to.$firstbenf3;
                 //$b=$from.$firstcust3;
+                if($firstbenf3!=''){
                 if($balcust3>=$amount){
                 		$UPDATE1="UPDATE $bankcust3 SET balance=($balcust3-$amount) WHERE accountno='$accno'";
                			mysqli_query($conn,$UPDATE1);
@@ -94,8 +95,13 @@
                             exit();
                 }
                 else{
-                        echo '<script type="text/javascript"> alert("Insufficient Balance")</script>';
-                            window.header("Location:transfail.php?withdraw=error");
+                        echo '<script>alert("Insufficient_Balance!")</script>';
+                            window.header("Location:transfail.php?withdraw=error(Insufficient Balance!)");
+                            exit();
+                }}
+                else{
+                    echo '<script> alert("Account_Number_Not_Found!")</script>';
+                            window.header("Location:transfail.php?withdraw=error(Account Number Not Found!)");
                             exit();
                 }
                 $conn->close();

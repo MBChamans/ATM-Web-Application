@@ -76,7 +76,7 @@ else
         <div class="row">
             <div class="column one"></div>
             <div class="column two"><br>
-                <h1>PLEASE ENTER THE AMOUNT IN MULTIPLES OF 100</h1>
+                <h1>PLEASE ENTER THE AMOUNT</h1>
                 <br>
                 <form action="wd.php" method="POST">
                     <div class="container">
@@ -95,7 +95,7 @@ else
         </div>
         <br>
         <br>
-        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 2 MINUTES</p>
+        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 1 MINUTE</p>
         <br>
         <br>
         <div class="footer">

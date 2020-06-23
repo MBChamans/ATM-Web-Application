@@ -108,6 +108,7 @@ else
     <br>
         </div><!-- End of #main-content -->
         <br><br>
+        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 1 MINUTE</p><br>
         <div class="footer">
             <br>
             <a style="font-size: 20px;"><img src="icon.png" width="20" height="20" alt="" loading="lazy">BANK OF MOKUJIT</a>
