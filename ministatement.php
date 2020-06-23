@@ -17,21 +17,6 @@ else
 {
 
  
-   /* $now = time();
- // checking the time now when page starts
- 
-    if($now > $_SESSION['expire'])
- 
-    {
- 
-        session_destroy();
-        window.header("Location:home.html?s=expired");
-        echo '<script type="text/javascript"> alert("Your session has expired.Please login agian to continue")'; 
-    }
-
-    else{
-        //starts here
-*/
  ?>
  <html>
     <head>
@@ -45,6 +30,31 @@ else
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript">
+            setTimeout(function() {
+            location.reload();
+            "<?php 
+             $now = time();
+             // checking the time now when home page starts
+             if($now > $_SESSION['expire'])
+ 
+            {
+ 
+            session_destroy();
+ 
+            header("Location:index.php?session=expired");
+ 
+             }//
+ 
+            else
+ 
+            {
+            //starting this else one [else1]
+            ?>"
+    
+  
+            }, 60000);
+  </script>
     </head>
     <body>
        <div class="first">
@@ -59,11 +69,52 @@ else
                 </div>
             </nav>
         </div>
+        <?php
+
+                $accno = $_SESSION['u_accountno'];
+                    $host = "localhost";
+                     $dbUsername = "root";
+                    $dbPassword = "";
+                    $dbname = "atmwebapp";
+                    $conn = mysqli_connect($host, $dbUsername, $dbPassword, $dbname);
+        
+               
+                $bank = "SELECT bank from customers where accountno='$accno'";
+                $b=mysqli_query($conn,$bank);
+                $ban=mysqli_fetch_array($b,MYSQLI_ASSOC);
+                $ba=$ban['bank'];
+
+
+                $first="SELECT fn from $ba where accountno='$accno'";
+                $first1=mysqli_query($conn,$first);
+                $first2=mysqli_fetch_array($first1,MYSQLI_ASSOC);
+                $first3=$first2['fn'];
+
+         $data="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 ORDER BY srno DESC LIMIT 5";
+                    $result1 = mysqli_query($conn,$data);
+                    $result2=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+                    $num_rows=mysqli_num_rows($result1);
+        if ($num_rows >0) {
+        $line="SELECT MAX(srno) AS 'srnomax' FROM $first3";
+                    $line1=mysqli_query($conn,$line);
+                    $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
+                    $maxsrno=$line2['srnomax'];
+        $bal="SELECT balance from $first3 where srno=$maxsrno";
+        $bal1=mysqli_query($conn,$bal);
+        $bal2=mysqli_fetch_array($bal1,MYSQLI_ASSOC);
+        $bal3=$bal2['balance'];
+    }
+    else{
+        $bal3=$_SESSION['u_balance'];
+    }
+
+
+        ?>
         <br>
         <div class="ms">
                 <br>
                 <div><span class="acno">ACCOUNT NUMBER: </span><span style="color: #228B22;"><?php echo $_SESSION['u_accountno']; ?></span>
-                <span class="bal">BALANCE: </span><span style="color: #228B22">Rs.<?php echo $_SESSION['u_balance']; ?></span></div></div>
+                <span class="bal">BALANCE: </span><span style="color: #228B22">Rs.<?php echo $bal3; ?></span></div></div>
                 <br>
                 <p class="mshead">MINI STATEMENT</p>
                 <br>
@@ -72,11 +123,12 @@ else
                     <table class="table">
                     <thead>
                         <tr>
-                            <th><b>TRANSACTION ID</b></th>
+                            <th><b>SR NO.</b></th>
                             <th><b>DESCRIPTION</b></th>
                             <th><b>TYPE</b></th>
                             <th><b>AMOUNT</b></th>
                             <th><b>BALANCE</b></th>
+                            <th><b>TRANS ID</b></th>
                         </tr>
                     </thead>
                     
@@ -119,32 +171,34 @@ else
                 $first2=mysqli_fetch_array($first1,MYSQLI_ASSOC);
                 $first3=$first2['fn'];
 
-                $data="SELECT transid, description ,type ,amount ,balance FROM $first3 ORDER BY transid DESC LIMIT 5";
+                $data="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 ORDER BY srno DESC LIMIT 5";
                     $result1 = mysqli_query($conn,$data);
                     $result2=mysqli_fetch_array($result1,MYSQLI_ASSOC);
                     $num_rows=mysqli_num_rows($result1);
 
-                    $line="SELECT MAX(transid) AS 'transidmax' FROM $first3";
+                    $line="SELECT MAX(srno) AS 'srnomax' FROM $first3";
                     $line1=mysqli_query($conn,$line);
                     $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
-                    $maxtrans=$line2['transidmax'];
+                    $maxsrno=$line2['srnomax'];
 
-                    $data1="SELECT transid, description ,type ,amount ,balance FROM $first3 WHERE transid=$maxtrans";
+                    
+
+                    if ($num_rows >0) {
+                        $data1="SELECT srno, description ,type ,amount ,balance,transid FROM $first3 WHERE srno=$maxsrno";
                     $toprow = mysqli_query($conn,$data1);
                     $row1 = mysqli_fetch_assoc($toprow);
-                    echo "<tr><td>" . $row1["transid"]. "</td><td>" . $row1["description"] . "</td><td>". $row1["type"]. "</td><td>". $row1["amount"]. "</td><td>". $row1["balance"]. "</td></tr>";
+                    echo "<tr><td>" . $row1["srno"]. "</td><td>" . $row1["description"] . "</td><td>". $row1["type"]. "</td><td>". $row1["amount"]. "</td><td>". $row1["balance"]. "</td><td>". $row1["transid"]. "</td></tr>";
 
-                    if ($num_rows >=0) {
                         $ctr=1;
                         do {
                             
                             $row = mysqli_fetch_assoc($result1);
-                        echo "<tr><td>" . $row["transid"]. "</td><td>" . $row["description"] . "</td><td>". $row["type"]. "</td><td>". $row["amount"]. "</td><td>". $row["balance"]. "</td></tr>";
+                        echo "<tr><td>" . $row["srno"]. "</td><td>" . $row["description"] . "</td><td>". $row["type"]. "</td><td>". $row["amount"]. "</td><td>". $row["balance"]. "</td><td>". $row["transid"]. "</td></tr>";
                         $ctr=$ctr+1;
                             
                             }while($ctr<=5);
                             echo "</table>";
-                    } else { echo "0 results"; }
+                    } else { echo "<br><br><p class='container'>NO ENTRIES AVAILABLE<p>"; }
         }
         $conn->close();
 
@@ -160,6 +214,8 @@ else
         <p>
  		<br>
  		<br>
+        <br>
+        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 1 MINUTE</p>
         <br>
         <br>
         <div class="footer">
@@ -177,7 +233,7 @@ else
         </div>
 <?php
  
- //}
+ }
  
 }
  

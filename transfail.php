@@ -17,25 +17,11 @@ else
 {
 
  
-   /* $now = time();
- // checking the time now when page starts
- 
-    if($now > $_SESSION['expire'])
- 
-    {
- 
-        session_destroy();
-        window.header("Location:home.html?s=expired");
-        echo '<script type="text/javascript"> alert("Your session has expired.Please login agian to continue")'; 
-    }
-
-    else{
-        //starts here
-*/
+  
  ?>
  <html>
     <head>
-        <title>Bank Of Mokujit | About Us</title>
+        <title>Bank Of Mokujit | Transaction failure</title>
         <link rel="icon" href="icon.png">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -45,11 +31,36 @@ else
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript">
+            setTimeout(function() {
+            location.reload();
+            "<?php 
+             $now = time();
+             // checking the time now when home page starts
+             if($now > $_SESSION['expire'])
+ 
+            {
+ 
+            session_destroy();
+ 
+            header("Location:index.php?session=expired");
+ 
+             }//
+ 
+            else
+ 
+            {
+            //starting this else one [else1]
+            ?>"
+    
+  
+            }, 60000);
+  </script>
     </head>
     <body>
         <div class="first">
             <nav class="navbar navbar-light">
-                <a class="navbar-brand" href="home.html" style="color: white; font-size: 30px;">
+                <a class="navbar-brand" href="index.php" style="color: white; font-size: 30px;">
                     <img src="icon.png" width="60" height="60" alt="" loading="lazy" style="margin-left: 10px; margin-right: 20px;">
                     BANK OF MOKUJIT
                 </a>
@@ -77,6 +88,8 @@ else
         </div>
         <br>
         <br>
+        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 1 MINUTE</p>
+        <br>
         <br>
         
         <div class="footer">
@@ -94,7 +107,7 @@ else
         </div>
         <?php
  
- //}
+ }
  
 }
  

@@ -56,13 +56,13 @@
                     }
                     else{
                         echo '<script type="text/javascript"> alert("New PIN and Confirm PIN do not match!")</script>';
-                            window.header("Location:changepin.php?changepin=error");
+                            window.header("Location:pinfail.php?changepin=error(New PIN and Confirm PIN do not match!)");
                             exit();
                     }                
                 }
                 else{
                     echo '<script type="text/javascript"> alert("Current PIN does not match!")</script>';
-                        window.header("Location:changepin.php?changepin=error");
+                        window.header("Location:pinfail.php?changepin=error(Current PIN does not match!)");
                         exit();
             
                 }

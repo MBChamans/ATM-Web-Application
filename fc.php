@@ -51,14 +51,23 @@
                 $first1=mysqli_query($conn,$first);
                 $first2=mysqli_fetch_array($first1,MYSQLI_ASSOC);
                 $first3=$first2['fn'];
+                
+
                 if($bal3>=$with){
                 		$UPDATE="UPDATE $ba SET balance=($bal3-$with) WHERE accountno='$accno'";
                			mysqli_query($conn,$UPDATE);
-                        echo '<script type="text/javascript"> alert("Withdraw Transaction Successfully!")
-                            </script>';
-                        window.header("Location:transsuccess.php?withdraw=success");
-                        $INSERT="INSERT INTO $first3(`description`, `balance`, `type`, `amount`) VALUES ('ATMF',($bal3-$with),'debit',$with)";
+                        //echo '<script type="text/javascript"> alert("Withdraw Transaction Successfully!")
+                            //</script>';
+                        
+                        $INSERTtran="INSERT INTO transactions(`sender`, `receiver`, `amount`,`type`) VALUES ('$first3','--',$with,'ATMF')";
+                        mysqli_query($conn,$INSERTtran);
+                        $line="SELECT MAX(transid) AS 'transidmax' FROM transactions";
+                        $line1=mysqli_query($conn,$line);
+                        $line2=mysqli_fetch_array($line1,MYSQLI_ASSOC);
+                        $maxtrans=$line2['transidmax'];
+                        $INSERT="INSERT INTO $first3(`description`, `balance`, `type`, `amount`,`transid`) VALUES ('ATMF',($bal3-$with),'debit',$with,$maxtrans)";
                         mysqli_query($conn,$INSERT); 
+                        window.header("Location:transsuccess.php?withdraw=success");
                             exit();
                 }
                 else{

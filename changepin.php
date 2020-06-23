@@ -17,21 +17,7 @@ else
 {
 
  
-   /* $now = time();
- // checking the time now when page starts
- 
-    if($now > $_SESSION['expire'])
- 
-    {
- 
-        session_destroy();
-        window.header("Location:home.html?s=expired");
-        echo '<script type="text/javascript"> alert("Your session has expired.Please login agian to continue")'; 
-    }
-
-    else{
-        //starts here
-*/
+  
  ?>
  <html>
     <head>
@@ -45,6 +31,31 @@ else
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript">
+            setTimeout(function() {
+            location.reload();
+            "<?php 
+             $now = time();
+             // checking the time now when home page starts
+             if($now > $_SESSION['expire'])
+ 
+            {
+ 
+            session_destroy();
+ 
+            header("Location:index.php?session=expired");
+ 
+             }//
+ 
+            else
+ 
+            {
+            //starting this else one [else1]
+            ?>"
+    
+  
+            }, 60000);
+  </script>
     </head>
     <body>
         <div class="first">
@@ -71,11 +82,11 @@ else
                 <form action="cp.php" method="POST">
                     <div class="container">
                         <label for="accno">ENTER CURRENT PIN</label><br>
-                        <input type="text" placeholder="ENTER PIN" name="CURRENT" required>
+                        <input type="password" placeholder="ENTER PIN" name="CURRENT" required>
                         <label for="accno">ENTER NEW PIN</label><br>
-                        <input type="text" placeholder="ENTER NEW PIN" name="NEW" required>
+                        <input type="password" placeholder="ENTER NEW PIN" name="NEW" required>
                         <label for="accno">CONFIRM NEW PIN</label><br>
-                        <input type="text" placeholder="ENTER NEW PIN" name="CONFIRM" required>
+                        <input type="password" placeholder="ENTER NEW PIN" name="CONFIRM" required>
                       <br><br>
                         
                         <div class="buttons">
@@ -90,6 +101,8 @@ else
             <div class="column three"></div>
         </div>
         <br>
+        <br>
+        <p style="font-size: 9px;text-align: center;">FOR SECURITY REASONS, YOU WILL BE LOGGED OUT OF THIS SERVICE IN 1 MINUTE</p>
         <br>
         <br>
         <div class="footer">
@@ -108,7 +121,7 @@ else
         </div>
 <?php
  
- //}
+ }
  
 }
  
